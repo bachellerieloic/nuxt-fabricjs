@@ -6,11 +6,7 @@
           Enter your company name
         </v-card-title>
         <v-card-text>
-<<<<<<< HEAD
-          <v-text-field label="Company name" ></v-text-field>
-=======
           <v-text-field label="company name" v-model="companyName"></v-text-field>
->>>>>>> a1c5380... nuxt fabric js working
         </v-card-text>
         <v-card-actions>
           <v-spacer />
@@ -24,15 +20,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-  import { fabric } from 'fabric'
-  export default {
-    data() {
-      return {
-        
-      }
-=======
-
   import { mapActions, mapGetters } from 'vuex';
   import { mapFields } from 'vuex-map-fields';
 
@@ -43,7 +30,6 @@
     },
     computed: {
       ...mapFields(['companyName']),
->>>>>>> a1c5380... nuxt fabric js working
     }
   }
 </script>
