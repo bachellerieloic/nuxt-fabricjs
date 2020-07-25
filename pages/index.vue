@@ -15,9 +15,7 @@
             <v-icon left>mdi-arrow-left-circle-outline</v-icon>
             Back
           </v-btn>
-          <v-btn color="primary" nuxt to="/fabric">
-            Continue
-          </v-btn>
+          <v-btn id="download" download="myImage.jpg" :href="href">Export</v-btn>
           <v-spacer/>
         </v-card-actions>
       </v-card>
@@ -33,7 +31,8 @@
       return {
         svg: '',
         canvas: {},
-        textFabric: {}
+        textFabric: {},
+        href: '',
       }
     },
     mounted() {
@@ -59,6 +58,13 @@
       setText() {
         this.textFabric.text = this.companyName;
         this.canvas.renderAll()
+        this.href = this.canvas.toDataURL("image/jpg");
+      },
+      exporte() {
+        // this.canvas.toDataURL({
+        //   format: 'jpeg',
+        // })
+
       }
     },
     computed: {
