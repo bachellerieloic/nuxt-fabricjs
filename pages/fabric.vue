@@ -14,7 +14,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="secondary" nuxt to="/font">
+          <v-btn color="secondary" nuxt to="/icon">
             <v-icon left>mdi-arrow-left-circle-outline</v-icon>
             Back
           </v-btn>
@@ -41,21 +41,35 @@
     mounted() {
       this.canvas = new fabric.Canvas('canvas');
       this.textFabric =  new fabric.IText(this.companyName+'', {
-        fontFamily: this.font, fontWeight: this.fontWeight, left: 100, top: 100 })
+        fontFamily: this.font, fontWeight: this.fontWeight, textAlign:'justify-center' })
 
       let rect = new fabric.Rect({
-        left: 100,
+        left: 150,
         top: 100,
         originX: 'left',
         originY: 'top',
-        width: 140,
-        height: 120,
+        width: 300,
+        height: 200,
         angle: 0,
         fill: 'rgba(255,255,255,1)',
+        textAlign: 'justify-center',
         transparentCorners: false
       });
-      this.canvas.add(rect).setActiveObject(rect).sendToBack()
+      this.canvas.add(rect).sendToBack(rect)
       this.canvas.add(this.textFabric);
+      let $this = this;
+      fabric.loadSVGFromString(this.icons[this.icon],function(objects,options) {
+
+        var loadedObjects = fabric.util.groupSVGElements(objects, options);
+
+        // loadedObjects.set({
+        //   width: 100,
+        //   height: 100
+        // });
+
+        $this.canvas.add(loadedObjects);
+        $this.canvas.renderAll();
+      });
     },
     methods: {
       setFontFamily(font) {
@@ -72,7 +86,7 @@
       }
     },
     computed: {
-      ...mapFields(['companyName', 'font', 'fontWeight']),
+      ...mapFields(['companyName', 'font', 'fontWeight', 'icons', 'icon']),
     }
   }
 </script>

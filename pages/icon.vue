@@ -5,28 +5,27 @@
         <v-card-title class="headline flex-column">
           <v-row>
             <v-col cols="12" class="text-center">
-              Select a font
+              Select an Icon
             </v-col>
           </v-row>
         </v-card-title>
         <v-card-text>
-          <v-row justify="center" class="mx-auto">
-            <v-col v-for="fontItem in fonts" :key="fontItem" cols="5" class="text-center mx-auto">
-              <v-btn @click="setFontFamily(fontItem)" :style="{fontFamily: fontItem, textTransform: 'none', fontSize: '4em'}"
-                     :class="fontItem === font ? 'active-font' : ''"  class="px-12" x-large height="100" elevation="10" >
-                {{ companyName }}
+          <v-row justify="center" class="mx-autod">
+            <v-col v-for="(iconItem, iconIndex) in icons" :key="iconIndex" cols="5" class="text-center mx-auto">
+              <v-btn @click="setIcon(iconIndex)" :style="{fontSize: '4em'}"
+                     :class="iconIndex === icon ? 'active-font' : ''"  class="px-12" x-large height="100" elevation="10" >
+                <v-icon v-text="iconIndex"></v-icon>
               </v-btn>
-              <small class="d-block mx-auto">{{ fontItem }}</small>
             </v-col>
           </v-row>
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="secondary" nuxt to="/" x-large>
+          <v-btn color="secondary" nuxt to="/font" x-large>
             <v-icon left>mdi-arrow-left-circle-outline</v-icon>
             Back
           </v-btn>
-          <v-btn color="primary" nuxt to="/icon" x-large>
+          <v-btn color="primary" nuxt to="/fabric" x-large>
             Next
             <v-icon right>mdi-arrow-right-circle-outline</v-icon>
           </v-btn>
@@ -47,13 +46,13 @@
       }
     },
     methods: {
-      setFontFamily(font) {
-        this.font = font;
+      setIcon(icon) {
+        this.icon = icon;
         // this.$router.push('/fabric')
       },
     },
     computed: {
-      ...mapFields(['companyName', 'font', 'fontWeight', 'fonts']),
+      ...mapFields(['companyName', 'icon', 'icons']),
     }
   }
 </script>
@@ -61,6 +60,6 @@
   #canvas
     background-color: gray
 
-  .v-btn.active-font
-    border: 1px solid lightgreen
+    .v-btn.active-font
+      border: 1px solid lightgreen
 </style>

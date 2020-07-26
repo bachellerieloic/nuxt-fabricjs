@@ -3,13 +3,14 @@
     <v-flex xs12 sm12 md12>
       <v-card min-width="600">
         <v-card-title class="headline flex-column">
+          Let's create your logo !
+        </v-card-title>
+        <v-card-text>
           <v-row>
             <v-col cols="12" class="text-center">
               Type a company Name
             </v-col>
           </v-row>
-        </v-card-title>
-        <v-card-text>
           <v-row>
             <v-col cols="6" class="text-center mx-auto">
               <v-text-field label="Company Name" v-model="companyName" class="text-center"

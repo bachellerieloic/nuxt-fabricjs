@@ -96,7 +96,7 @@ export default {
 
   webfontloader: {
     google: {
-      families: ['Montserrat:400', 'Roboto:400', 'Raleway:400', 'Ranchers', 'Lobster', 'Comfortaa', 'Rowdies', 'MerryWeather']
+      families: ['Montserrat:400', 'Roboto:400', 'Raleway:400', 'Ranchers', 'Lobster', 'Pacifico', 'Comfortaa', 'Rowdies', 'MerryWeather']
     }
   },
 
