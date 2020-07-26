@@ -50,6 +50,7 @@ export default {
   */
   buildModules: [
     '@nuxtjs/vuetify',
+    'nuxt-webfontloader',
   ],
   /*
   ** Nuxt.js modules
@@ -92,6 +93,13 @@ export default {
       }
     }
   },
+
+  webfontloader: {
+    google: {
+      families: ['Montserrat:400', 'Roboto:400', 'Raleway:400', 'Ranchers', 'Lobster', 'Comfortaa', 'Rowdies', 'MerryWeather']
+    }
+  },
+
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

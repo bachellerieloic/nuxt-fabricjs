@@ -2,7 +2,10 @@ export const namespaced = true
 import { getField, updateField } from 'vuex-map-fields';
 
 export const state = {
-  companyName: ''
+  companyName: '',
+  font: '',
+  fontWeight: '',
+  fonts: ['Montserrat', 'Roboto', 'Raleway', 'Ranchers', 'Lobster', 'Comfortaa', 'Rowdies', 'MerryWeather'],
 };
 
 export const mutations = {
