@@ -2,6 +2,11 @@ export const namespaced = true
 import { getField, updateField } from 'vuex-map-fields';
 
 export const state = {
+    page: '',
+    pages: [
+      {title: 'Name', to: '/index' },
+      {title: 'Font', to: '/font' },
+    ],
     companyName: '',
     font: '',
     fontWeight: '',
