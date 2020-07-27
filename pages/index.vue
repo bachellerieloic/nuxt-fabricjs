@@ -8,13 +8,13 @@
         <v-card-text>
           <v-row>
             <v-col cols="12" class="text-center">
-              Type a company Name
+              Type a company Name {{ companyName.length }}
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="6" class="text-center mx-auto">
               <v-text-field label="Company Name" v-model="companyName" class="text-center"
-                            style="font-size:2em" height="2em" outlined rounded></v-text-field>
+                            style="font-size:2em" height="2em" outlined rounded @keyup.enter="$router.push('/font')"></v-text-field>
             </v-col>
           </v-row>
         </v-card-text>

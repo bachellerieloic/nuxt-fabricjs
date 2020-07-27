@@ -1,18 +1,18 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm12 md12>
-      <v-card min-width="600">
+      <v-card min-width="600" class="text-center">
         <v-card-title class="headline flex-column">
           <v-row>
             <v-col cols="12" class="text-center">
-              Select a font
+              Select a font {{ fontSize }}
             </v-col>
           </v-row>
         </v-card-title>
-        <v-card-text>
+        <v-card-text style="height:60vh; overflow-y:auto!important">
           <v-row justify="center" class="mx-auto">
-            <v-col v-for="fontItem in fonts" :key="fontItem" cols="5" class="text-center mx-auto">
-              <v-btn @click="setFontFamily(fontItem)" :style="{fontFamily: fontItem, textTransform: 'none', fontSize: '4em'}"
+            <v-col v-for="fontItem in fonts" :key="fontItem" :cols="columnSize" class="text-center mx-auto">
+              <v-btn @click="setFontFamily(fontItem)" :style="{fontFamily: fontItem, textTransform: 'none', fontSize: fontSize}"
                      :class="fontItem === font ? 'active-font' : ''"  class="px-12" x-large height="100" elevation="10" >
                 {{ companyName }}
               </v-btn>
@@ -43,7 +43,8 @@
   export default {
     data () {
       return {
-
+        fontSize: '4em',
+        columnSize: 4,
       }
     },
     methods: {
@@ -51,6 +52,41 @@
         this.font = font;
         // this.$router.push('/fabric')
       },
+    },
+    mounted() {
+      switch(true) {
+        case this.companyName.length >= 18:
+          this.fontSize = '3em'
+          this.columnSize = 12;
+          break;
+        case this.companyName.length >= 16:
+          this.fontSize = '2em'
+          this.columnSize = 12;
+          break;
+        case this.companyName.length >= 14:
+          this.fontSize = '2em'
+          this.columnSize = 6;
+          break;
+        case this.companyName.length >= 12:
+          this.fontSize = '2.2em'
+          this.columnSize = 6;
+          break;
+        case this.companyName.length >= 9:
+          this.fontSize = '3em'
+          this.columnSize = 6;
+          break;
+        case this.companyName.length >= 8:
+          this.fontSize = '3.5em'
+          this.columnSize = 6;
+          break;
+        case this.companyName.length >= 6:
+          this.fontSize = '4em'
+          this.columnSize = 6;
+          break;
+        default:
+          this.fontSize = '4em'
+          this.columnSize = 4;
+      }
     },
     computed: {
       ...mapFields(['companyName', 'font', 'fontWeight', 'fonts']),

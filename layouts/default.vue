@@ -12,9 +12,9 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main>
+    <v-main class="align-center">
       <v-container>
-        <nuxt />
+        <nuxt/>
       </v-container>
     </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
@@ -29,8 +29,6 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
-    <BottomNavBar></BottomNavBar>
   </v-app>
 
 </template>
