@@ -34,12 +34,8 @@
 </template>
 
 <script>
-  import BottomNavBar from "../components/BottomNavBar";
 
 export default {
-  components: {
-    BottomNavBar
-  },
   data () {
     return {
       clipped: false,

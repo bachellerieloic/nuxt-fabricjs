@@ -2,11 +2,6 @@ export const namespaced = true
 import { getField, updateField } from 'vuex-map-fields';
 
 export const state = {
-    page: '',
-    pages: [
-      {title: 'Name', to: '/index' },
-      {title: 'Font', to: '/font' },
-    ],
     companyName: '',
     font: '',
     fontWeight: '',
@@ -17,6 +12,8 @@ export const state = {
       'mdi-lifebuoy': 'testing',
       'mdi-update': 'testing'
     },
+    color: '',
+    colors: ['red', 'green', 'grey', 'orange', 'blue']
 };
 
 export const mutations = {
