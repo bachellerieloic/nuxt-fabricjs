@@ -1,28 +1,6 @@
 <template>
   <v-layout column justify-center align-center>
-    <v-flex xs12 sm12 md12>
-      <v-card>
-        <v-card-title class="headline flex-column">
-          <v-row>
-            <v-col cols="12" class="text-center">
-              {{ companyName }}
-            </v-col>
-          </v-row>
-        </v-card-title>
-        <v-card-text>
-          <canvas id="canvas" height="400" width="600"></canvas>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer/>
-          <v-btn color="secondary" nuxt to="/icon">
-            <v-icon left>mdi-arrow-left-circle-outline</v-icon>
-            Back
-          </v-btn>
-          <v-btn id="download" download="myImage.jpg" :href="href">Export</v-btn>
-          <v-spacer/>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
+    <canvas id="canvas" height="400" width="600"></canvas>
   </v-layout>
 </template>
 <script>
