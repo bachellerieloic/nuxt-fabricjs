@@ -1,6 +1,10 @@
 <template>
   <v-layout column justify-center align-center>
-    <canvas id="canvas" height="400" width="600"></canvas>
+    <canvas id="canvas" height="400" width="400"></canvas>
+    <v-btn class="mt-6" color="success" outlined rounded @click="download">
+      <v-icon>mdi-download-circle-outline</v-icon>
+      Download
+    </v-btn>
   </v-layout>
 </template>
 <script>
@@ -10,6 +14,7 @@
   export default {
     data () {
       return {
+        defaultTextSize: '',
         svg: '',
         canvas: {},
         textFabric: {},
@@ -17,54 +22,94 @@
       }
     },
     mounted() {
-      this.canvas = new fabric.Canvas('canvas');
-      this.textFabric =  new fabric.IText(this.companyName+'', {
-        fontFamily: this.font, fontWeight: this.fontWeight, textAlign:'justify-center' })
-
-      let rect = new fabric.Rect({
-        left: 150,
-        top: 100,
-        originX: 'left',
-        originY: 'top',
-        width: 300,
-        height: 200,
-        angle: 0,
-        fill: 'rgba(255,255,255,1)',
-        textAlign: 'justify-center',
-        transparentCorners: false
-      });
-      this.canvas.add(rect).sendToBack(rect)
-      this.canvas.add(this.textFabric);
-      let $this = this;
-      fabric.loadSVGFromString(this.icons[this.icon],function(objects,options) {
-
-        var loadedObjects = fabric.util.groupSVGElements(objects, options);
-
-        // loadedObjects.set({
-        //   width: 100,
-        //   height: 100
-        // });
-
-        $this.canvas.add(loadedObjects);
-        $this.canvas.renderAll();
-      });
+      this.setFabricJs()
     },
     methods: {
-      setFontFamily(font) {
-        console.log('setFontFamily', font);
-        this.textFabric.fontFamily = font;
-        this.canvas.renderAll()
-        this.href = this.canvas.toDataURL("image/jpg");
-      },
-      exporte() {
-        // this.canvas.toDataURL({
-        //   format: 'jpeg',
-        // })
+      setFabricJs() {
+        this.canvas = new fabric.Canvas('canvas');
 
-      }
+        //TEXT
+        this.textFabric =  new fabric.IText(this.companyName+'', {fontFamily: this.font, width:300, textAlign:'center' })
+        this.canvas.add(this.textFabric);
+
+        //BACKGROUND-COLOR
+        this.canvas.backgroundColor = this.color;
+
+        //ICON
+        let $this = this;
+        fabric.loadSVGFromString(this.icons[this.icon],function(objects,options) {
+          var loadedObjects = fabric.util.groupSVGElements(objects, options);
+
+          loadedObjects.set({
+            left: 100,
+            top: 100,
+            width: 200,
+            height: 200
+          });
+
+          $this.canvas.add(loadedObjects);
+          $this.canvas.discardActiveObject();
+          $this.canvas.renderAll();
+          // $this.canvasSave = Object.assign({}, $this.canvas);
+        });
+      },
+      updateFabricJs() {
+        this.canvas.clear();
+        //TEXT
+        this.textFabric = new fabric.IText(this.companyName+'', {fontFamily: this.font, width:200, textAlign:'center' })
+        this.canvas.add(this.textFabric);
+
+        //BACKGROUND-COLOR
+        this.canvas.backgroundColor = this.color;
+
+        //ICON
+        let $this = this;
+        fabric.loadSVGFromString(this.icons[this.icon],function(objects,options) {
+          $this.canvas.add(
+            fabric.util.groupSVGElements(objects, options).set({
+              left: 100,
+              top: 100,
+              scaleToWidth: 400,
+              scaleToHeight: 400,
+            })
+          );
+          $this.canvas.renderAll();
+        });
+
+        this.canvas.discardActiveObject();
+        this.canvas.renderAll();
+      },
+      download() {
+        this.canvas.discardActiveObject();
+        const dataURL = this.canvas.toDataURL({
+          left: 0,
+          top: 0,
+          format: 'png',
+        });
+        const link = document.createElement('a');
+        link.download = 'image.png';
+        link.href = dataURL;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      },
     },
     computed: {
-      ...mapFields(['companyName', 'font', 'fontWeight', 'icons', 'icon']),
+      ...mapFields(['companyName', 'font', 'icons', 'icon', 'color', 'canvasSave']),
+    },
+    watch: {
+      companyName(newValue, oldValue) {
+        this.updateFabricJs();
+      },
+      font(newValue, oldValue) {
+        this.updateFabricJs();
+      },
+      color(newValue, oldValue) {
+        this.updateFabricJs();
+      },
+      icon(newValue, oldValue) {
+          this.updateFabricJs();
+      }
     }
   }
 </script>

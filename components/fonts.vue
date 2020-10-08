@@ -3,7 +3,7 @@
         <v-row justify="center" class="mx-auto" style="height:60vh;overflow-y: scroll; border:1px solid lightgray; border-radius:40px">
           <v-col v-for="fontItem in fonts" :key="fontItem" :cols="columnSize" class="text-center mx-auto">
             <v-btn @click="setFontFamily(fontItem)" :style="{fontFamily: fontItem, textTransform: 'none', fontSize: fontSize}"
-                   :class="fontItem === font ? 'active-font' : ''"  class="px-12" x-large height="100" elevation="10" >
+                   :class="fontItem === font ? 'active-font' : ''"  class="px-12" x-large height="100" elevation="6" >
               {{ companyName }}
             </v-btn>
             <small class="d-block mx-auto">{{ fontItem }}</small>
@@ -62,7 +62,7 @@
       }
     },
     computed: {
-      ...mapFields(['companyName', 'font', 'fontWeight', 'fonts']),
+      ...mapFields(['companyName', 'font', 'fonts']),
     }
   }
 </script>

@@ -1,13 +1,14 @@
 <template>
   <v-responsive max-width="900" class="mx-auto">
-    <v-row align="center" justify="center" class="mx-0 my-0 mt-0">
+    <v-row align="center" justify="center" class="mx-0 my-0 mt-0 p-10">
       <v-col cols="12" class="mx-auto">
-        <h4 class="text-h4 text-center mb-4">
-          <v-icon size="1em">mdi-image-edit-outline</v-icon>
-          Image Maker
-        </h4>
-        <v-card class="" style="border-radius:40px">
+        <v-card class="" style="border-radius:40px" elevation="8">
           <v-card-title class="justify-center flex-column">
+            <h4 class="text-h4 text-center mb-10">
+              <v-icon size="1.5em" color="black">mdi-image-edit-outline</v-icon>
+              Image Maker
+            </h4>
+
             <h6 class="text-h6">{{ currentTitle }}</h6>
           </v-card-title>
 
@@ -38,10 +39,6 @@
                 <v-window-item :value="5">
                   <Fabric></Fabric>
                 </v-window-item>
-                <v-window-item :value="6">
-                  Payment
-                </v-window-item>
-
               </v-window>
 
                 <v-row class="pt-4 px-4" align="center">
@@ -57,12 +54,12 @@
                     </v-btn>
                   </v-col>
                 </v-row>
-                <v-row no-gutters>
-                  <v-col cols="12" class="text-center">
-                    <span class="font-weight-thin">Have a question?</span>
-                    <v-btn text small to="/" color="warning" class="px-2">See our FAQ</v-btn>
-                  </v-col>
-                </v-row>
+<!--                <v-row no-gutters>-->
+<!--                  <v-col cols="12" class="text-center">-->
+<!--                    <span class="font-weight-thin">Have a question?</span>-->
+<!--                    <v-btn text small to="/" color="warning" class="px-2">See our FAQ</v-btn>-->
+<!--                  </v-col>-->
+<!--                </v-row>-->
 
             </v-responsive>
           </v-card-text>
@@ -99,7 +96,7 @@
     methods: {
     },
     computed: {
-      ...mapFields(['companyName']),
+      ...mapFields(['companyName', 'canvasSave']),
       currentTitle () {
         switch (this.step) {
           case 1: return 'Type your company name'
